@@ -1,0 +1,10 @@
+services:
+  app:
+    build: . # Сборка образа из Dockerfile в текущей директории
+    volumes:
+      - ./app:/app
+    # command: make setup  # Устанавливаем зависимости
+    # extends:
+    #   file: docker-compose.override.yml
+    #   service: webapp
+
