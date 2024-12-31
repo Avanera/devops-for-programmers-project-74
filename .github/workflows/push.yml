@@ -1,0 +1,41 @@
+name: Push Workflow
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build-and-push:
+    name: Build, Test, and Push
+    runs-on: ubuntu-latest
+    steps:
+      - 
+        name: Checkout code 
+        uses: actions/checkout@v4
+
+      -
+        name: Login to Docker Hub
+        uses: docker/login-action@v3
+        with:
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
+
+      -
+        name: Set up Docker Buildx for caching availability
+        uses: docker/setup-buildx-action@v3
+
+      - 
+        name: Run tests
+        run: make test
+
+      - 
+        name: Build and push production image
+        uses: docker/build-push-action@v6
+        with:
+          context: .
+          file: Dockerfile.production
+          push: true
+          tags: avaneraa/devops-for-programmers-project-74:latest
+          cache-from: type=registry,ref=avaneraa/devops-for-programmers-project-74:latest
+          cache-to: type=inline,ref=avaneraa/devops-for-programmers-project-74:latest
