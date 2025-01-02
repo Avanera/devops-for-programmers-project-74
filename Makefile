@@ -1,3 +1,5 @@
+setup:
+	cp .env.example .env
 start:
 	docker-compose up
 ci:
