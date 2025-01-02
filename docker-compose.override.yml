@@ -9,7 +9,7 @@ services:
       - ./app:/app
     ports:
       - "8080:3000"
-    command: ["npm", "start"]
+    command: ["make", "dev"]
   
   caddy:
     build: 
