@@ -48,6 +48,6 @@ jobs:
           context: .
           file: Dockerfile.production
           push: true
-          tags: avaneraa/devops-for-programmers-project-74:latest
-          cache-from: type=registry,ref=avaneraa/devops-for-programmers-project-74:latest
-          cache-to: type=inline,ref=avaneraa/devops-for-programmers-project-74:latest
+          tags: ${{ secrets.DOCKER_USERNAME }}/devops-for-programmers-project-74:latest
+          cache-from: type=registry,ref=${{ secrets.DOCKER_USERNAME }}/devops-for-programmers-project-74:latest
+          cache-to: type=inline,ref=${{ secrets.DOCKER_USERNAME }}/devops-for-programmers-project-74:latest
