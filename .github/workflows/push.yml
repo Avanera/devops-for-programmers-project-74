@@ -9,11 +9,6 @@ jobs:
   build-and-push:
     name: Build, Test, and Push
     runs-on: ubuntu-latest
-    env:
-      DATABASE_HOST: ${{ secrets.DATABASE_HOST }}
-      DATABASE_USERNAME: ${{ secrets.DATABASE_USERNAME }}
-      DATABASE_PASSWORD: ${{ secrets.DATABASE_PASSWORD }}
-      DATABASE_NAME: ${{ secrets.DATABASE_NAME }}
 
     steps:
       - 
@@ -37,8 +32,8 @@ jobs:
         with:
           version: '2.14.2'
       
-      - name: Debug environment
-        run: printenv | grep DATABASE
+      - name: Debug Docker Compose Configuration
+        run: docker-compose config
 
       - 
         name: Run tests
