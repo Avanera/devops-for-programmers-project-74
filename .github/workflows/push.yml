@@ -37,8 +37,8 @@ jobs:
         with:
           version: '2.14.2'
       
-      - name: Debug environment
-        run: printenv | grep DATABASE
+      - name: Debug Docker Compose Configuration
+        run: docker-compose config
 
       - 
         name: Run tests
