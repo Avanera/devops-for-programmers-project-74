@@ -1,15 +1,4 @@
 services:
-  app:
-    build: 
-      context: .
-      dockerfile: Dockerfile.production
-    image: avaneraa/devops-for-programmers-project-74
-    environment: 
-      NODE_ENV: production
-    command: ["make", "test"]
-    depends_on:
-      - db
-
   db:
     image: postgres:latest
     restart: always
@@ -23,6 +12,17 @@ services:
       interval: 5s
       timeout: 5s
       retries: 5
+
+  app:
+    build: 
+      context: .
+      dockerfile: Dockerfile.production
+    image: avaneraa/devops-for-programmers-project-74
+    environment: 
+      NODE_ENV: production
+    command: ["make", "test"]
+    depends_on:
+      - db
 
 volumes:
   pgdata:
