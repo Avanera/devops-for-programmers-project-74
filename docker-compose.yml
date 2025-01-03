@@ -22,7 +22,8 @@ services:
       NODE_ENV: production
     command: ["make", "test"]
     depends_on:
-      - db
+      db:
+        condition: service_healthy
 
 volumes:
   pgdata:
