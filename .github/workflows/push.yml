@@ -36,6 +36,13 @@ jobs:
           version: '2.14.2'
 
       - 
+        name: Create .env file for Docker Compose
+        run: |
+          echo "POSTGRES_DB=${{ secrets.POSTGRES_DB }}" >> .env
+          echo "POSTGRES_USER=${{ secrets.POSTGRES_USER }}" >> .env
+          echo "POSTGRES_PASSWORD=${{ secrets.POSTGRES_PASSWORD }}" >> .env
+
+      - 
         name: Run tests
         run: make ci
 
