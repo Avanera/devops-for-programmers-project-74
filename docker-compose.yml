@@ -4,11 +4,11 @@ services:
     restart: always
     shm_size: 128mb
     environment:
-      # POSTGRES_DB: ololo
+      POSTGRES_DB: ololo
       POSTGRES_USER: arina
       POSTGRES_PASSWORD: trololo
-      POSTGRES_HOST_AUTH_METHOD: scram-sha-256
-      POSTGRES_INITDB_ARGS: --auth-host=scram-sha-256
+      # POSTGRES_HOST_AUTH_METHOD: scram-sha-256
+      # POSTGRES_INITDB_ARGS: --auth-host=scram-sha-256
     volumes:
       - pgdata:/var/lib/postgresql/data
     healthcheck:
