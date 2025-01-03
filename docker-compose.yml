@@ -4,10 +4,11 @@ services:
     restart: always
     shm_size: 128mb
     environment:
-      POSTGRES_DB: postgres
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: postgres
-      POSTGRES_HOST: localhost
+      # POSTGRES_DB: ololo
+      POSTGRES_USER: arina
+      POSTGRES_PASSWORD: trololo
+      POSTGRES_HOST_AUTH_METHOD: scram-sha-256
+      POSTGRES_INITDB_ARGS: --auth-host=scram-sha-256
     volumes:
       - pgdata:/var/lib/postgresql/data
     healthcheck:
@@ -20,14 +21,13 @@ services:
     build: 
       context: .
       dockerfile: Dockerfile.production
-    image: avaneraa/devops-for-programmers-project-74
     environment: 
       NODE_ENV: production
-      DB_HOST: localhost
-      DB_PORT: 5432
-      DB_USER: postgres
-      DB_PASSWORD: postgres
-      DB_NAME: postgres
+      DATABASE_NAME: ololo
+      DATABASE_USERNAME: arina
+      DATABASE_PASSWORD: trololo
+      DATABASE_HOST: db
+
     command: ["make", "test"]
     depends_on:
       db:
