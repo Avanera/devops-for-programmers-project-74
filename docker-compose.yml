@@ -4,11 +4,9 @@ services:
     restart: always
     shm_size: 128mb
     environment:
-      POSTGRES_DB: ololo
-      POSTGRES_USER: arina
-      POSTGRES_PASSWORD: trololo
-      # POSTGRES_HOST_AUTH_METHOD: scram-sha-256
-      # POSTGRES_INITDB_ARGS: --auth-host=scram-sha-256
+      POSTGRES_DB: ${POSTGRES_DB:-postgres}
+      POSTGRES_USER: ${POSTGRES_USER:-postgres}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-postgres}
     volumes:
       - pgdata:/var/lib/postgresql/data
     healthcheck:
@@ -18,16 +16,15 @@ services:
       retries: 5
 
   app:
-    build: 
+    build:
       context: .
       dockerfile: Dockerfile.production
-    environment: 
+    environment:
       NODE_ENV: production
-      DATABASE_NAME: ololo
-      DATABASE_USERNAME: arina
-      DATABASE_PASSWORD: trololo
+      DATABASE_NAME: ${POSTGRES_DB}
+      DATABASE_USERNAME: ${POSTGRES_USER}
+      DATABASE_PASSWORD: ${POSTGRES_PASSWORD}
       DATABASE_HOST: db
-
     command: ["make", "test"]
     depends_on:
       db:

@@ -1,5 +1,5 @@
 setup:
-	cp .env.example .env
+	@test -f .env || cp .env.example .env
 start:
 	docker-compose up
 ci:
