@@ -25,7 +25,6 @@ services:
       DATABASE_USERNAME: ${POSTGRES_USER}
       DATABASE_PASSWORD: ${POSTGRES_PASSWORD}
       DATABASE_HOST: db
-
     command: ["make", "test"]
     depends_on:
       db:
