@@ -12,9 +12,7 @@ services:
     command: ["make", "dev"]
   
   caddy:
-    build: 
-      context: .
-      dockerfile: services/caddy/Dockerfile
+    image: caddy:latest
     volumes:
       - ./services/caddy/Caddyfile:/etc/caddy/Caddyfile
     ports:
